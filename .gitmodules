@@ -1,0 +1,6 @@
+[submodule "src/lib/LICK"]
+	path = src/lib/LICK
+	url = https://github.com/usysrc/LICK.git
+[submodule "src/lib/REST-love"]
+	path = src/lib/REST-love
+	url = https://github.com/MrcSnm/REST-love.git
