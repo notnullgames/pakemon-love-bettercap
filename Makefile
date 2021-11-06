@@ -18,8 +18,8 @@ clean: ## Delete all output files
 
 web: build/web                      ## Build for the web
 linux: build/appimage               ## Build for Linux
-mac: build/macos/pakemon-macos.zip ## Build for MacOS
-win: build/win64/pakemon-win64.zip ## Build for Windows
+mac: build/macos/pakemon-macos.zip  ## Build for MacOS
+win: build/win64/pakemon-win64.zip  ## Build for Windows
 deploy: build/web                   ## Deploy to https://pakemon.surge.sh
 	npx surge build/web pakemon.surge.sh
 

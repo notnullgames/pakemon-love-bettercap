@@ -9,7 +9,7 @@ function StateTemplate:leave()
 end
 
 -- called often to update state 
-function StateTemplate:update(dt)
+function StateTemplate:update(dt, time)
 end
 
 -- called when a mapped button is pressed

@@ -1,11 +1,12 @@
-local bettercap = {}
+-- this is an interface to bettercap
+-- requires REST (REST-love) in globals
 
-bettercap.url = strenv("PAKEMON_URL", "http://localhost:8080")
-
--- need to work out how to use these
-bettercap.user = strenv("PAKEMON_USER", "pakemon")
-bettercap.password = strenv("PAKEMON_PASSWORD", "pakemon")
-
+-- settings: override as needed
+local bettercap = {
+  url = "http://localhost:8080",
+  user = "pakemon",
+  password = "pakemon"
+}
 
 -- GET /api/session
 -- Get a JSON of the state of the current session

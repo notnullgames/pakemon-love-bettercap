@@ -10,7 +10,7 @@ function StateIntro:leave()
 end
 
 -- called often to update state 
-function StateIntro:update(dt)
+function StateIntro:update(dt, time)
 end
 
 -- called when a mapped button is pressed

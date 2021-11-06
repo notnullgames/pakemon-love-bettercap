@@ -1,8 +1,7 @@
--- setup some globals
-conf = require "conf"
 require "lib.REST-love.module-loader"
 requireFromLib("lib/REST-love", "REST")
-StateIntro = require("states.intro")
+StateIntro = require "states.intro"
+bettercap = require "lib.bettercap"
 
 -- return boolean from env-var, or default value (false)
 function boolenv(name, default)
@@ -14,6 +13,10 @@ end
 function strenv(name, default)
   return os.getenv(name) or default or ""
 end
+
+bettercap.url = strenv("PAKEMON_URL", bettercap.url)
+bettercap.user = strenv("PAKEMON_USER", bettercap.user)
+bettercap.password = strenv("PAKEMON_PASSWORD", bettercap.password)
 
 -- set dev in conf.lua to true to live-reload
 if boolenv("PAKEMON_DEV") then
@@ -36,13 +39,15 @@ function setstate(state)
   end
 end
 
+local time = 0
 function love.update(dt)
+  time = time + dt
   if lurker then
     lurker.update()
   end
   REST.retrieve(dt)
   if current_state and current_state.update then
-    current_state:update(dt)
+    current_state:update(dt, time)
   end
 end
 
