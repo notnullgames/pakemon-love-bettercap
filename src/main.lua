@@ -18,7 +18,6 @@ bettercap.url = strenv("PAKEMON_URL", bettercap.url)
 bettercap.user = strenv("PAKEMON_USER", bettercap.user)
 bettercap.password = strenv("PAKEMON_PASSWORD", bettercap.password)
 
--- set dev in conf.lua to true to live-reload
 if boolenv("PAKEMON_DEV") then
   print("Pakemon running in dev-mode")
   lume = requireFromLib("lib/lume", "lume")
