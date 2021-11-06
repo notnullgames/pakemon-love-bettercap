@@ -4,13 +4,13 @@ require "lib.REST-love.module-loader"
 requireFromLib("lib/REST-love", "REST")
 StateIntro = require("states.intro")
 
--- returns boolean for environment var, or default value (false)
+-- return boolean from env-var, or default value (false)
 function boolenv(name, default)
   local e = string.lower(os.getenv(name) or default  or "")
-  return e == "yes" or e == "1" or e == "true" or e == "y"
+  return e == "yes" or e == "1" or e == "true" or e == "y" or e == "t"
 end
 
--- return string from env, or default value (empty string)
+-- return string from env-var, or default value (empty string)
 function strenv(name, default)
   return os.getenv(name) or default or ""
 end
