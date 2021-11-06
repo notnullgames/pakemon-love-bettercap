@@ -2,6 +2,7 @@ local StateIntro = {}
 
 -- called when this scene is entered
 function StateIntro:enter()
+  print(love.filesystem.getAppdataDirectory())
 end
 
 -- called when this scene is left

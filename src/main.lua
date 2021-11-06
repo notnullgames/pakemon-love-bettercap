@@ -28,6 +28,7 @@ function love.update(dt)
   if lurker then
     lurker.update()
   end
+  REST.retrieve(dt)
   if current_state and current_state.update then
     current_state:update(dt)
   end
