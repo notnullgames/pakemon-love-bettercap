@@ -4,8 +4,19 @@ require "lib.REST-love.module-loader"
 requireFromLib("lib/REST-love", "REST")
 StateIntro = require("states.intro")
 
+-- returns boolean for environment var, or default value (false)
+function boolenv(name, default)
+  local e = string.lower(os.getenv(name) or default  or "")
+  return e == "yes" or e == "1" or e == "true" or e == "y"
+end
+
+-- return string from env, or default value (empty string)
+function strenv(name, default)
+  return os.getenv(name) or default or ""
+end
+
 -- set dev in conf.lua to true to live-reload
-if conf.dev then
+if boolenv("PAKEMON_DEV") then
   lume = requireFromLib("lib/lume", "lume")
   lurker = requireFromLib("lib/lurker", "lurker")
 end
