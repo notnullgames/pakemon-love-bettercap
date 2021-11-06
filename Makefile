@@ -11,7 +11,7 @@ setup: ## Install dev-dependencies
 	pip3 install makelove 
 
 run: ## Run pakemon, locally
-	docker-compose up -d && PAKEMON_DEV=1 love src; docker-compose down
+	cd tools; docker-compose up -d && PAKEMON_DEV=1 love ../src; docker-compose down
 
 clean: ## Delete all output files
 	rm -rf build
@@ -24,17 +24,17 @@ deploy: build/web                   ## Deploy to https://pakemon.surge.sh
 	npx surge build/web pakemon.surge.sh
 
 build/web:
-	cd src && makelove lovejs --config ../makelove.toml
-	cd build/lovejs && unzip pakemon-lovejs.zip && mv pakemon ../web && cd .. && rm -rf lovejs && cp ../template.html web/index.html 
+	cd src && makelove lovejs --config ../tools/makelove.toml
+	cd build/lovejs && unzip pakemon-lovejs.zip && mv pakemon ../web && cd .. && rm -rf lovejs && cp ../tools/template.html web/index.html 
 
 build/appimage:
-	cd src && makelove appimage --config ../makelove.toml
+	cd src && makelove appimage --config ../tools/makelove.toml
 
 build/macos/pakemon-macos.zip:
-	cd src && makelove macos --config ../makelove.toml
+	cd src && makelove macos --config ../tools/makelove.toml
 
 build/win32/pakemon-win32.zip:
-	cd src && makelove win32 --config ../makelove.toml
+	cd src && makelove win32 --config ../tools/makelove.toml
 
 build/win64/pakemon-win64.zip:
-	cd src && makelove win64 --config ../makelove.toml
+	cd src && makelove win64 --config ../tools/makelove.toml

@@ -17,6 +17,7 @@ end
 
 -- set dev in conf.lua to true to live-reload
 if boolenv("PAKEMON_DEV") then
+  print("Pakemon running in dev-mode")
   lume = requireFromLib("lib/lume", "lume")
   lurker = requireFromLib("lib/lurker", "lurker")
 end
