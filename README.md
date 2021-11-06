@@ -4,10 +4,13 @@ This is a gamified frontend for hacking tools, meant to run with limited input (
 
 It needs love & docker installed to develop locally.
 
+## setup
+
 ```
 # get files and deps
 git clone --recursive https://github.com/notnullgames/pakemon-love-bettercap.git
 cd pakemon-love-bettercap
+make setup
 
 
 # run test-net + bettercap server + frontend, in hot-reloading mode
@@ -15,4 +18,18 @@ make run
 
 # get a list of more things you can do with make
 make
+```
+
+## environment variables
+
+There are a few environment variables that control the system.
+
+```sh
+# the love app is running in (live-reloading) dev-mode
+PAKEMON_DEV=1
+
+# location & credentials for the bettercap backend, defaults to setup in docker-compose
+PAKEMON_USER=pakemon
+PAKEMON_PASSWORD=pakemon
+PAKEMON_URL=http://localhost:8080
 ```

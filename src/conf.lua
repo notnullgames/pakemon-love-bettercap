@@ -49,10 +49,3 @@ function love.conf(t)
   t.modules.video = true                -- Enable the video module (boolean)
   t.modules.window = true               -- Enable the window module (boolean)
 end
-
-return {
-  dev = true,                          -- Development mode. Live-reloads on change. Disable for web.
-  bcurl = "http://localhost:8080",     -- location of bettercap
-  bcuser = "pakemon",                  -- username for bettercap
-  bcpass = "pakemon"                   -- password for bettercap
-}
