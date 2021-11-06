@@ -4,3 +4,6 @@
 [submodule "src/lib/REST-love"]
 	path = src/lib/REST-love
 	url = https://github.com/MrcSnm/REST-love.git
+[submodule "src/lib/hump"]
+	path = src/lib/hump
+	url = https://github.com/vrld/hump.git

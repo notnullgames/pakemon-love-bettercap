@@ -1,8 +1,10 @@
--- setup some globals for libs
+-- setup some globals
+conf = require "conf"
+
 require "lib.REST-love.module-loader"
 requireFromLib("lib/REST-love", "REST")
 
-conf = require "conf"
+-- set dev in conf.lua to tru to live-reload
 if conf.dev then
   lick = requireFromLib("lib/LICK", "lick")
   -- call love.load() on refresh?
