@@ -7,3 +7,9 @@
 [submodule "src/lib/hump"]
 	path = src/lib/hump
 	url = https://github.com/vrld/hump.git
+[submodule "src/lib/lurker"]
+	path = src/lib/lurker
+	url = https://github.com/rxi/lurker.git
+[submodule "src/lib/lume"]
+	path = src/lib/lume
+	url = https://github.com/rxi/lume.git
