@@ -1,6 +1,7 @@
 require "lib.inputmap"
 require "lib.REST-love.module-loader"
 requireFromLib("lib/REST-love", "REST")
+Camera = requireFromLib("lib/hump", "camera")
 json = require "lib.dkjson"
 bettercap = require "lib.bettercap"
 cron = require "lib.cron"
