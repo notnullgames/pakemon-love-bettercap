@@ -11,7 +11,7 @@ setup: ## Install dev-dependencies
 	pip3 install makelove 
 
 run: ## Run pakemon, locally
-	cd tools; docker-compose up -d && PAKEMON_DEV=1 love ../src; docker-compose down
+	cd tools; docker-compose up -d && sleep 3; PAKEMON_DEV=1 love ../src; docker-compose down
 
 clean: ## Delete all output files
 	rm -rf build

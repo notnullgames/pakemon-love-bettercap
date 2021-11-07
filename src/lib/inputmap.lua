@@ -1,14 +1,13 @@
 --- reusable map for joystick & keyboard, for gpi gameboy-like pi
 --- this simplifies input into a single callback for keys & gamepad
 
--- override these in your own code
-function input_pressed(button)
-  print("override input_pressed: " + button)
-end
+-- function input_pressed(button)
+--   print("override input_pressed: " + button)
+-- end
 
-function input_released(button)
-  print("override input_released: " + button)
-end
+-- function input_released(button)
+--   print("override input_released: " + button)
+-- end
 
 
 function love.gamepadpressed(joystick, button)

@@ -1,7 +1,10 @@
 require "lib.REST-love.module-loader"
 requireFromLib("lib/REST-love", "REST")
-StateIntro = require "states.intro"
+StateHostList = require "states.host_list"
+json = require "lib.dkjson"
 bettercap = require "lib.bettercap"
+
+REST.isDebug = false
 
 -- return boolean from env-var, or default value (false)
 function boolenv(name, default)
@@ -15,18 +18,16 @@ function strenv(name, default)
 end
 
 bettercap.url = strenv("PAKEMON_URL", bettercap.url)
-bettercap.user = strenv("PAKEMON_USER", bettercap.user)
-bettercap.password = strenv("PAKEMON_PASSWORD", bettercap.password)
 
-if boolenv("PAKEMON_DEV") then
+dev_mode = boolenv("PAKEMON_DEV")
+
+if dev_mode then
   print("Pakemon running in dev-mode")
   lume = requireFromLib("lib/lume", "lume")
   lurker = requireFromLib("lib/lurker", "lurker")
 end
 
-current_state = StateIntro
-
-function setstate(state)
+function set_state(state)
   if current_state and current_state.leave then
     current_state:leave()
   end
@@ -37,6 +38,7 @@ function setstate(state)
     end
   end
 end
+set_state(StateHostList)
 
 local time = 0
 function love.update(dt)
@@ -44,7 +46,6 @@ function love.update(dt)
   if lurker then
     lurker.update()
   end
-  REST.retrieve(dt)
   if current_state and current_state.update then
     current_state:update(dt, time)
   end
@@ -57,6 +58,14 @@ function love.draw()
 end
 
 function input_pressed(button)
+  if dev_mode then
+    -- there is also "dev" and "scene", for once I setup scenes for other options
+    if button == "reload" then
+      print("reload scene")
+      set_state(current_state)
+    end
+  end
+
   if current_state and current_state.pressed then
     current_state:pressed(button)
   end

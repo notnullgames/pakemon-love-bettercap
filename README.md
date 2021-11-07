@@ -29,7 +29,5 @@ There are a few environment variables that control the system.
 PAKEMON_DEV=1
 
 # location & credentials for the bettercap backend, defaults to setup in docker-compose
-PAKEMON_USER=pakemon
-PAKEMON_PASSWORD=pakemon
-PAKEMON_URL=http://localhost:8080
+PAKEMON_URL=http://pakemon:pakemon@localhost:8081
 ```
