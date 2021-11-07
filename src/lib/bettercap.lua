@@ -2,9 +2,9 @@
 -- requires REST (REST-love) and json (dkjson) in globals
 
 -- settings: override as needed
-local bettercap = {
-  url = "http://pakemon:pakemon@localhost:8081"
-}
+local bettercap = {}
+
+bettercap.url = "http://pakemon:pakemon@localhost:8081"
 
 -- parse JSON returned before handing to callback
 local function wrapcb(cb)

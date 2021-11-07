@@ -1,10 +1,16 @@
 require "lib.REST-love.module-loader"
 requireFromLib("lib/REST-love", "REST")
-StateHostList = require "states.host_list"
 json = require "lib.dkjson"
 bettercap = require "lib.bettercap"
-
+cron = require "lib.cron"
 REST.isDebug = false
+
+StateHostList = require "states.host_list"
+
+-- simple debug function to dump JSON
+function debug(data)
+  print(json.encode(data, { indent = 2 }))
+end
 
 -- return boolean from env-var, or default value (false)
 function boolenv(name, default)
@@ -19,14 +25,7 @@ end
 
 bettercap.url = strenv("PAKEMON_URL", bettercap.url)
 
-dev_mode = boolenv("PAKEMON_DEV")
-
-if dev_mode then
-  print("Pakemon running in dev-mode")
-  lume = requireFromLib("lib/lume", "lume")
-  lurker = requireFromLib("lib/lurker", "lurker")
-end
-
+-- switch to a new gamestate
 function set_state(state)
   if current_state and current_state.leave then
     current_state:leave()
@@ -39,6 +38,14 @@ function set_state(state)
   end
 end
 set_state(StateHostList)
+
+dev_mode = boolenv("PAKEMON_DEV")
+
+if dev_mode then
+  print("Pakemon running in dev-mode")
+  lume = requireFromLib("lib/lume", "lume")
+  lurker = requireFromLib("lib/lurker", "lurker")
+end
 
 local time = 0
 function love.update(dt)
