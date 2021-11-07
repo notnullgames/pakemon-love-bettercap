@@ -6,8 +6,8 @@ local hosts = {}
 local host_timer
 local current_selection = 1
 
--- don;t make requests so the list doesn't change in the middle of a selection
-local freeze_net = false
+-- this is a plain array of mac's to track what I have seen
+local host_macs = {}
 
 local camera = Camera(320, 0)
 
@@ -15,15 +15,18 @@ local camera = Camera(320, 0)
 local function update_hosts()
   local function process_hosts(data)
     if data then
-      hosts = data["hosts"]
+      for _,host in pairs(data["hosts"]) do
+        if not hosts[ host["mac"] ] then
+          hosts[ host["mac"] ] = host
+          table.insert(host_macs, host["mac"])
+        end
+      end
     else
       print("error getting hosts")
     end
   end
-  if not freeze_net then
-    print("getting hosts")
-    bettercap:lan(nil, process_hosts)
-  end
+  print("getting hosts")
+  bettercap:lan(nil, process_hosts)
 end
 
 -- called when this scene is entered
@@ -40,15 +43,14 @@ function StateHostList:leave()
 end
 
 -- called often to update state 
-function StateHostList:update(dt, time)
+function StateHostList:update(dt)
   -- it gets unset on lurker-reload, so this will recreate it
   if not host_timer then
     host_timer = cron.every(5, update_hosts)
   end
   host_timer:update(dt)
-  local max = table.getn(hosts)
-  if current_selection > max and max ~= 0 then
-    current_selection = max
+  if current_selection > #hosts and #hosts ~= 0 then
+    current_selection = #hosts
   end
   local page = math.floor((current_selection-1) / 4)
   camera:lookAt(320, (page * 440) + 240)
@@ -56,31 +58,29 @@ end
 
 -- called when a mapped button is pressed
 function StateHostList:pressed(button)
-  freeze_net = true
-  local max = table.getn(hosts)
   if button == "up" then
     current_selection = current_selection - 1
   end
   if button == "down" then
     current_selection = current_selection + 1
   end
-  if current_selection > max then
+  if current_selection > #hosts then
     current_selection = 1
   end
   if current_selection < 1 then
-    current_selection = max
+    current_selection = #hosts
   end
 end
 
 -- called when a mapped button is released
 function StateHostList:released(button)
-  freeze_net = false
 end
 
 -- called often to draw current state
 function StateHostList:draw()
   camera:attach()
-  for i, host in pairs(hosts) do
+  for i, mac in pairs(host_macs) do
+    local host = hosts[mac]
     local offset = 10 + ((i-1) * 110)
     if i == current_selection then
       love.graphics.setColor(0, 0, 1, 1)

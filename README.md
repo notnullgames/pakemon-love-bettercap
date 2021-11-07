@@ -31,3 +31,9 @@ PAKEMON_DEV=1
 # location & credentials for the bettercap backend, defaults to setup in docker-compose
 PAKEMON_URL=http://pakemon:pakemon@localhost:8081
 ```
+
+## credits
+
+I am trying to keep track of all artwork used.
+
+- [portrait images](https://www.spriters-resource.com/pc_computer/rpgmakervx/sheet/100109/)
