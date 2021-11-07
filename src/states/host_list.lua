@@ -39,9 +39,6 @@ end
 
 -- called often to update state 
 function StateHostList:update(dt, time)
-  if getting_hosts then
-    REST.retrieve(dt)
-  end
   -- every 10 seconds, refresh hosts
   if (math.floor(time) % 10) == 0 then
     update_hosts()

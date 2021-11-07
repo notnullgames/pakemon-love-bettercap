@@ -43,8 +43,9 @@ set_state(StateHostList)
 local time = 0
 function love.update(dt)
   time = time + dt
+  pcall(function() REST.retrieve(dt) end)
   if lurker then
-    lurker.update()
+    pcall(function() lurker.update() end)
   end
   if current_state and current_state.update then
     current_state:update(dt, time)
