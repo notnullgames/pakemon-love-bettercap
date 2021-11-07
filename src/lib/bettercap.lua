@@ -104,7 +104,7 @@ end
 -- POST /api/session
 -- Post a command to the interactive session
 function bettercap:run(command, cb)
-  REST.post(bettercap.url .. '/api/session', nil, { command = command } , wrapcb(cb))
+  REST.post(bettercap.url .. '/api/session', nil, { cmd = command } , wrapcb(cb))
 end
 
 -- GET /api/events

@@ -1,3 +1,4 @@
+require "lib.inputmap"
 require "lib.REST-love.module-loader"
 requireFromLib("lib/REST-love", "REST")
 json = require "lib.dkjson"
@@ -52,7 +53,7 @@ function love.update(dt)
   time = time + dt
   pcall(function() REST.retrieve(dt) end)
   if lurker then
-    pcall(function() lurker.update() end)
+    lurker.update()
   end
   if current_state and current_state.update then
     current_state:update(dt, time)
