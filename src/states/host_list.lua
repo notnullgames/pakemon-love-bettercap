@@ -18,7 +18,7 @@ local faces = {}
 
 for x = 0,8 do
   for y = 0,9 do
-    table.insert(faces, love.graphics.newQuad(x*95, y*95, 95, 95, faceImage:getDimensions()))
+    table.insert(faces, love.graphics.newQuad((x*95) +x, (y*95)+y, 95, 95, faceImage:getDimensions()))
   end
 end
 
@@ -104,7 +104,7 @@ function StateHostList:draw()
     love.graphics.printf(host["hostname"], 120, offset + 10, 520, "left")
     love.graphics.printf(host["ipv4"], 120, offset + 30, 520, "left")
     love.graphics.printf(host["mac"], 120, offset + 50, 520, "left")
-    love.graphics.draw(faceImage, faces[host["image"]], 13, offset + 4)
+    love.graphics.draw(faceImage, faces[host["image"]], 17, offset + 3)
   end
   camera:detach()
 end
