@@ -1,9 +1,6 @@
 [submodule "src/lib/LICK"]
 	path = src/lib/LICK
 	url = https://github.com/usysrc/LICK.git
-[submodule "src/lib/REST-love"]
-	path = src/lib/REST-love
-	url = https://github.com/MrcSnm/REST-love.git
 [submodule "src/lib/hump"]
 	path = src/lib/hump
 	url = https://github.com/vrld/hump.git
@@ -13,3 +10,15 @@
 [submodule "src/lib/lume"]
 	path = src/lib/lume
 	url = https://github.com/rxi/lume.git
+[submodule "src/lib/bitser"]
+	path = src/lib/bitser
+	url = https://github.com/gvx/bitser.git
+[submodule "src/lib/luajit-request"]
+	path = src/lib/luajit-request
+	url = https://github.com/LPGhatguy/luajit-request.git
+[submodule "src/lib/lovehandles"]
+	path = src/lib/lovehandles
+	url = https://github.com/notnullgames/lovehandles.git
+[submodule "src/lib/loverest"]
+	path = src/lib/loverest
+	url = https://github.com/notnullgames/loverest.git
