@@ -13,6 +13,15 @@ local host_macs = {}
 
 local camera = Camera(320, 0)
 
+local faceImage = love.graphics.newImage("images/faces.png")
+local faces = {}
+
+for x = 0,8 do
+  for y = 0,9 do
+    table.insert(faces, love.graphics.newQuad(x*95, y*95, 95, 95, faceImage:getDimensions()))
+  end
+end
+
 -- called when this scene is entered
 function StateHostList:enter()
   print("enabling recon")
@@ -40,6 +49,7 @@ function StateHostList:update(dt)
     for _, host in pairs(data["hosts"]) do
       if not hosts[ host["mac"] ] then
         hosts[ host["mac"] ] = host
+        hosts[ host["mac"] ]["image"] = math.random(1, #faces)
         table.insert(host_macs, host["mac"])
       end
     end
@@ -91,9 +101,10 @@ function StateHostList:draw()
     
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.rectangle("line", 10, offset, 620, 100, 10, 10)
-    love.graphics.printf(host["hostname"], 100, offset + 10, 520, "left")
-    love.graphics.printf(host["ipv4"], 100, offset + 30, 520, "left")
-    love.graphics.printf(host["mac"], 100, offset + 50, 520, "left")
+    love.graphics.printf(host["hostname"], 120, offset + 10, 520, "left")
+    love.graphics.printf(host["ipv4"], 120, offset + 30, 520, "left")
+    love.graphics.printf(host["mac"], 120, offset + 50, 520, "left")
+    love.graphics.draw(faceImage, faces[host["image"]], 13, offset + 4)
   end
   camera:detach()
 end
