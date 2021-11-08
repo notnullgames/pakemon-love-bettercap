@@ -59,11 +59,11 @@ function StateHostList:pressed(button)
   if button == "down" then
     current_selection = current_selection + 1
   end
-  if current_selection > #hosts then
+  if current_selection > #host_macs then
     current_selection = 1
   end
   if current_selection < 1 then
-    current_selection = #hosts
+    current_selection = #host_macs
   end
 end
 
