@@ -18,7 +18,7 @@ local faces = {}
 
 for x = 0,8 do
   for y = 0,9 do
-    table.insert(faces, love.graphics.newQuad((x*95) +x, (y*95)+y, 95, 95, faceImage:getDimensions()))
+    table.insert(faces, love.graphics.newQuad((x*96), (y*96), 96, 96, faceImage:getDimensions()))
   end
 end
 
