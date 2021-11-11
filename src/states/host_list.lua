@@ -14,13 +14,6 @@ local host_macs = {}
 local camera = Camera(320, 0)
 
 local faceImage = love.graphics.newImage("images/faces.png")
-local faces = {}
-
-for x = 0,8 do
-  for y = 0,9 do
-    table.insert(faces, love.graphics.newQuad((x*96), (y*96), 96, 96, faceImage:getDimensions()))
-  end
-end
 
 -- called when this scene is entered
 function StateHostList:enter()
@@ -49,7 +42,7 @@ function StateHostList:update(dt)
     for _, host in pairs(data["hosts"]) do
       if not hosts[ host["mac"] ] then
         hosts[ host["mac"] ] = host
-        hosts[ host["mac"] ]["image"] = math.random(1, #faces)
+        hosts[ host["mac"] ]["image"] = love.graphics.newQuad((math.random(0,8)*96), (math.random(0,9)*96), 96, 96, faceImage:getDimensions())
         table.insert(host_macs, host["mac"])
       end
     end
@@ -104,7 +97,7 @@ function StateHostList:draw()
     love.graphics.printf(host["hostname"], 120, offset + 10, 520, "left")
     love.graphics.printf(host["ipv4"], 120, offset + 30, 520, "left")
     love.graphics.printf(host["mac"], 120, offset + 50, 520, "left")
-    love.graphics.draw(faceImage, faces[host["image"]], 17, offset + 3)
+    love.graphics.draw(faceImage, host["image"], 17, offset + 3)
   end
   camera:detach()
 end

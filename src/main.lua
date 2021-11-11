@@ -16,6 +16,8 @@ require "inputmap"
 
 StateHostList = require "states.host_list"
 
+math.randomseed(os.time())
+
 -- simple debug function to dump JSON
 function debug(data)
   print(json.encode(data, { indent = 2 }))
