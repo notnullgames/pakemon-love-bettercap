@@ -10,8 +10,14 @@ help: ## Show this help
 setup: ## Install dev-dependencies
 	pip3 install makelove 
 
-run: ## Run pakemon, locally
+run: ## Run pakemon, locally, with full test-net & code-debugging/hot-reloading
 	cd tools; docker-compose up -d && sleep 3; PAKEMON_DEV=1 love ../src; docker-compose down
+
+run-real: ## Run pakemon, locally, no docker-net, on real local bettercap (good for testing wifi, etc)
+	cd tools; PAKEMON_DEV=1 love ../src
+
+run-light: ## Run just pakemon, with no dev-tools
+	love src
 
 clean: ## Delete all output files
 	rm -rf build

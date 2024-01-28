@@ -16,9 +16,16 @@ make setup
 # run test-net + bettercap server + frontend, in hot-reloading mode
 make run
 
+# lighter run,  with dev-tools disabled
+make run-light
+
+# If you are running a local bettercap, it's better for testing real stuff, and you can run the frontend in hot-reloading mode
+make run-real
+
 # get a list of more things you can do with make
 make
 ```
+
 
 ## environment variables
 

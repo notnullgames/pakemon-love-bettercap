@@ -15,6 +15,7 @@ cron = require "cron"
 require "inputmap"
 
 StateHostList = require "states.host_list"
+StateHostWifiGalaxies = require "states.wifi_galaxies"
 
 math.randomseed(os.time())
 

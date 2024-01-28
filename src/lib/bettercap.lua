@@ -17,6 +17,15 @@ function bettercap:lan(mac)
   end
 end
 
+-- Get a list of the wifi
+function bettercap:wifi(mac)
+  if (mac) then
+    return rest:get(bettercap.url .. '/api/session/wifi/' .. mac)
+  else
+    return rest:get(bettercap.url .. '/api/session/wifi')
+  end
+end
+
 -- Post a command to the interactive session: fire & forget
 function bettercap:run(command)
   rest:post(bettercap.url .. '/api/session', { cmd = command })()
